@@ -401,23 +401,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function animateCounter() {
-    const [dd, mm, yyyy] = FRIEND_DATA.startDate.split('/').map(Number);
-    const start = new Date(yyyy, mm - 1, dd);
-    const now   = new Date();
-    const totalDays   = Math.floor((now - start) / (1000 * 60 * 60 * 24));
-    const totalMonths = (now.getFullYear() - start.getFullYear()) * 12
-                        + (now.getMonth() - start.getMonth());
-
-    animateNumber(daysCount,   totalDays,   1600);
-    animateNumber(monthsCount, totalMonths, 1200);
+    // Diubah menjadi nilai statis sesuai permintaan user
+    animateNumber(daysCount, 300, 1600, "+");
+    animateNumber(monthsCount, 11, 1200, "+");
   }
 
-  function animateNumber(el, target, duration) {
+  function animateNumber(el, target, duration, suffix = "") {
     const start = performance.now();
     function step(ts) {
       const p = Math.min((ts - start) / duration, 1);
       const ease = 1 - Math.pow(1 - p, 4);
-      el.textContent = Math.round(ease * target).toLocaleString('id-ID');
+      el.textContent = Math.round(ease * target).toLocaleString('id-ID') + suffix;
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
