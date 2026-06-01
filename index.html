@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thanks For Being My Friend</title>
+  <meta name="description" content="Sebuah ucapan terima kasih yang tulus untuk seseorang yang pernah menjadi bagian dari ceritaku." />
+  <meta property="og:title"       content="Thanks For Being My Friend" />
+  <meta property="og:description" content="Sebuah hadiah digital yang dibuat dengan sepenuh hati." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="src/style.css" />
+
+  <!-- Config (must load before main.js) -->
+  <script src="src/config/friend-data.js"></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       AUDIO
+  ═══════════════════════════════════════════════════════ -->
+  <audio id="bg-music" loop>
+    <source src="Rex Orange County - Best Friend (Official Audio).mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ═══════════════════════════════════════════════════════
+       INTRO SCREEN
+  ═══════════════════════════════════════════════════════ -->
+  <div id="intro-screen" role="dialog" aria-label="Layar pembuka">
+    <div class="intro-particles" id="intro-particles" aria-hidden="true"></div>
+    <div class="intro-content">
+      <div class="intro-logo" aria-hidden="true">✦</div>
+      <h1 class="intro-title">Untuk Seseorang Yang Pernah Menjadi Bagian Dari Ceritaku</h1>
+      <p class="intro-subtitle">Aku punya sesuatu yang ingin kusampaikan.</p>
+      <button id="start-btn" class="start-btn" type="button">Mulai</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════════════════ -->
+  <main id="main-content" class="hidden" aria-label="Konten utama">
+
+    <!-- ── Music Controller ────────────────────────────────── -->
+    <div class="music-controller" id="music-controller" aria-label="Kontrol musik">
+      <button class="music-btn" id="play-pause-btn" type="button" title="Play / Pause" aria-label="Play Pause">
+        <svg id="play-icon"  viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="pause-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="hidden"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <div class="music-expand">
+        <button class="music-btn" id="mute-btn" type="button" title="Mute / Unmute" aria-label="Mute Unmute">
+          <svg id="unmute-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+          </svg>
+          <svg id="mute-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="hidden">
+            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+          </svg>
+        </button>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.7"
+               class="volume-slider" aria-label="Volume" />
+        <span class="music-label">Best Friend — Rex Orange County</span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 1 — HERO
+    ══════════════════════════════════════════════════════ -->
+    <section id="hero" class="section hero-section" aria-label="Halaman Utama">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-content">
+        <h2 class="hero-headline animate-in">Terima Kasih Sudah Jadi Temanku</h2>
+        <p  class="hero-subheadline animate-in delay-1">Untuk semua hari yang pernah kita lalui bersama.</p>
+      </div>
+      <div class="scroll-hint animate-in delay-2" aria-hidden="true">↓</div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 2 — AWAL CERITA
+    ══════════════════════════════════════════════════════ -->
+    <section id="story" class="section story-section" aria-label="Awal Cerita">
+      <div class="section-inner">
+        <h2 class="section-title fade-in-element">Aku Masih Ingat</h2>
+
+        <div class="timeline">
+          <div class="timeline-item fade-in-element">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p>Aku masih ingat waktu aku challenge diriku sendiri pas tengah malem — atau mungkin sekitaran subuh.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item fade-in-element">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p>Waktu itu aku tidak menyangka, dari hal kecil itu, akan lahir sebuah cerita yang jauh lebih besar dari yang kubayangkan.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item fade-in-element">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <p>Dan sekarang, aku sangat bersyukur itu terjadi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 3 — THINGS I APPRECIATE
+    ══════════════════════════════════════════════════════ -->
+    <section id="appreciate" class="section appreciate-section" aria-label="Hal-hal yang aku syukuri">
+      <div class="section-inner">
+        <h2 class="section-title fade-in-element">Hal-Hal Yang Aku Syukuri</h2>
+
+        <div class="cards-grid">
+          <div class="appreciation-card fade-in-element" data-delay="0">
+            <div class="card-icon" aria-hidden="true">🎧</div>
+            <p>Terima kasih sudah mendengarkan.</p>
+          </div>
+          <div class="appreciation-card fade-in-element" data-delay="100">
+            <div class="card-icon" aria-hidden="true">😄</div>
+            <p>Terima kasih sudah membuatku tertawa.</p>
+          </div>
+          <div class="appreciation-card fade-in-element" data-delay="200">
+            <div class="card-icon" aria-hidden="true">🌸</div>
+            <p>Terima kasih sudah hadir.</p>
+          </div>
+          <div class="appreciation-card fade-in-element" data-delay="300">
+            <div class="card-icon" aria-hidden="true">💪</div>
+            <p>Terima kasih sudah bertahan.</p>
+          </div>
+          <div class="appreciation-card fade-in-element" data-delay="400">
+            <div class="card-icon" aria-hidden="true">✨</div>
+            <p>Terima kasih sudah menjadi dirimu sendiri.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 4 — MEMORY GALLERY
+    ══════════════════════════════════════════════════════ -->
+    <section id="gallery" class="section gallery-section" aria-label="Galeri Kenangan">
+      <div class="section-inner">
+        <h2 class="section-title fade-in-element">Kenangan Yang Tersimpan</h2>
+        <div class="masonry-grid" id="memory-gallery" aria-label="Galeri foto kenangan">
+          <!-- Populated by main.js from FRIEND_DATA.memories -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 5 — FRIENDSHIP COUNTER
+    ══════════════════════════════════════════════════════ -->
+    <section id="counter" class="section counter-section" aria-label="Penghitung Persahabatan">
+      <div class="section-inner">
+        <h2 class="section-title fade-in-element">Sudah Sejauh Ini</h2>
+
+        <div class="counter-display fade-in-element" aria-live="polite">
+          <div class="counter-item">
+            <span class="counter-number" id="days-count" aria-label="Jumlah hari berteman">0</span>
+            <span class="counter-label">Hari Berteman</span>
+          </div>
+          <div class="counter-divider" aria-hidden="true">·</div>
+          <div class="counter-item">
+            <span class="counter-number" id="months-count" aria-label="Jumlah bulan berteman">0</span>
+            <span class="counter-label">Bulan Berteman</span>
+          </div>
+        </div>
+
+        <p class="counter-sub fade-in-element">Dan setiap harinya berharga.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 6 — LETTER
+    ══════════════════════════════════════════════════════ -->
+    <section id="letter" class="section letter-section" aria-label="Surat Untukmu">
+      <div class="section-inner">
+        <h2 class="section-title fade-in-element">Untukmu</h2>
+
+        <div class="letter-paper fade-in-element" role="document" aria-label="Isi surat">
+          <div class="letter-body" id="letter-text" aria-live="polite"></div>
+          <div class="letter-signature">
+            — Seseorang yang beruntung mengenalmu
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 7 — FINAL MESSAGE
+    ══════════════════════════════════════════════════════ -->
+    <section id="final" class="section final-section" aria-label="Pesan Akhir">
+      <canvas id="night-canvas" aria-hidden="true"></canvas>
+      <div class="section-inner">
+        <div class="final-messages">
+          <p class="final-line      fade-in-element"         >Mungkin suatu hari nanti jalan kita berbeda.</p>
+          <p class="final-line      fade-in-element delay-1"  >Mungkin kita akan jarang chattan lagi.</p>
+          <p class="final-line      fade-in-element delay-2"  >Mungkin kita akan sibuk dengan hidup masing-masing.</p>
+          <p class="final-line-bold fade-in-element delay-3"  >Tapi aku ingin kamu tahu satu hal.</p>
+          <p class="final-line-bold fade-in-element delay-4"  >Aku bersyukur pernah mengenalmu.</p>
+          <p class="final-line-bold fade-in-element delay-5"  >Dan aku bersyukur pernah menjadi temanmu.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         ENDING SCREEN
+    ══════════════════════════════════════════════════════ -->
+    <section id="ending" class="section ending-section" aria-label="Layar Penutup">
+      <canvas id="ending-canvas" aria-hidden="true"></canvas>
+      <div class="ending-content">
+        <h2 class="ending-title    fade-in-element"       >Terima Kasih Sudah Menjadi Temanku.</h2>
+        <p  class="ending-subtitle fade-in-element delay-1">Semoga hidupmu selalu dipenuhi hal-hal baik.</p>
+        <button class="heart-btn  fade-in-element delay-2" id="heart-btn" type="button"
+                aria-label="Tekan untuk pesan terakhir" title="Tekan aku">
+          ❤️
+        </button>
+      </div>
+    </section>
+
+  </main><!-- /main#main-content -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       POPUP
+  ═══════════════════════════════════════════════════════ -->
+  <div class="popup-overlay" id="popup-overlay" role="dialog" aria-modal="true" aria-label="Pesan terakhir">
+    <div class="popup-box">
+      <div class="popup-icon" aria-hidden="true">💌</div>
+      <p class="popup-text">Aku akan selalu menghargai kenangan ini.</p>
+      <button class="popup-close" id="popup-close" type="button">Tutup</button>
+    </div>
+  </div>
+
+  <!-- Main Script -->
+  <script src="src/main.js"></script>
+
+</body>
+</html>
