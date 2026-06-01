@@ -31,7 +31,7 @@ const FRIEND_DATA = {
   memories: [
     {
       src: "public/images/memories/foto1.jpg",
-      caption: "Momen yang selalu kuingat"
+      caption: "Saat bersama mu"
     },
     {
       src: "public/images/memories/foto2.jpg",
@@ -39,7 +39,7 @@ const FRIEND_DATA = {
     },
     {
       src: "public/images/memories/foto3.jpg",
-      caption: "Waktu yang berharga"
+      caption: "Momen yang selalu kuingat"
     },
     {
       src: "public/images/memories/foto4.jpg",
