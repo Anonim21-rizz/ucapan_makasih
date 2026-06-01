@@ -30,19 +30,19 @@ const FRIEND_DATA = {
   // Foto kenangan (letakkan file di public/images/memories/)
   memories: [
     {
-      src: "public/images/memories/memory1.jpg",
+      src: "public/images/memories/foto1.jpg",
       caption: "Momen yang selalu kuingat"
     },
     {
-      src: "public/images/memories/memory2.jpg",
+      src: "public/images/memories/foto2.jpg",
       caption: "Saat kita tertawa bersama"
     },
     {
-      src: "public/images/memories/memory3.jpg",
+      src: "public/images/memories/foto3.jpg",
       caption: "Waktu yang berharga"
     },
     {
-      src: "public/images/memories/memory4.jpg",
+      src: "public/images/memories/foto4.jpg",
       caption: "Kenangan indah"
     }
   ]
